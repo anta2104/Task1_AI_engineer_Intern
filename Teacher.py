@@ -3,7 +3,7 @@ class Teacher:
     listTeacher = []
 
     # Đọc dữ liệu từ file txt
-    def read_data(self) : 
+    def read_data_teacher(self) : 
         f = open("Teacher.txt")
         data = list(f)
         # print(len(data))
@@ -45,7 +45,7 @@ class Teacher:
         if(tam != 0) : exit("ERROR")
     
     #Lưu dữ liệu
-    def save(self) :
+    def saveT(self) :
         
         self.listTeacher = sorted(self.listTeacher, key=lambda x: x.ID)
         with open("Teacher.txt", "w") as f:

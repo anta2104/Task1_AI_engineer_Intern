@@ -2,7 +2,7 @@ class Student:
     
     listStudent = []
     # Đọc dữ liệu từ file txt
-    def read_data(self) : 
+    def read_data_student(self) : 
         f = open("Student.txt")
         data = list(f)
         # print(len(data))
@@ -42,7 +42,7 @@ class Student:
         if(tam != 0) : exit("ERROR")
 
     #Lưu dữ liệu
-    def save(self) :
+    def saveS(self) :
         
         self.listStudent = sorted(self.listStudent, key=lambda x: x.ID)
         with open("Student.txt", "w") as f:
