@@ -30,6 +30,12 @@ class dbQuery:
     # Lấy các thông tin cần trích xuất
     def select(self, list):
         self.list = list
+        # with open(self.table_name + ".txt", newline='') as f: 
+        #     reader = csv.reader(f, delimiter='|')
+        #     rows = list(reader)
+        # for i in rows[0] :
+        #     for j in list :
+        #         if not j in i : return "Không có thông tin trên"
         return self
 
     # Thêm dữ liệu
@@ -73,7 +79,7 @@ class dbQuery:
 
     # Xóa dữ liệu 
     def delete(self, table_name):
-        self.table_name = table_name
+        self.table_name = table_name + ".txt"
         
         with open(self.table_name, newline='') as f: 
             reader = csv.reader(f, delimiter='|')
@@ -83,7 +89,6 @@ class dbQuery:
         index_column = rows[0].index(self.columns_name)
         for row in rows[1:]:
             if str(row[index_column]) == str(self.value): 
-                # xóa row nếu thỏa mãn điều kiện where
                 rows.remove(row)
                 
         with open(self.table_name, 'w', newline='') as f:
@@ -132,6 +137,7 @@ class dbQuery:
                 if index != -1 : 
                     i = self.index[index][0] + 1
                     output = [rows[i][j] for j in range(len(rows[i])) if rows[0][j] in self.list]
+                else: exit("Sai giá trị truyền vào hàm Where")
             return output
         except FileNotFoundError:
             results = []
@@ -164,13 +170,13 @@ class dbQuery:
                 right = mid - 1
         return -1
 
-x = dbQuery()
-# x.create_index("Teacher","Name")
+# x = dbQuery()
+# # x.create_index("Teacher","Name")
 
-# start_time = time.time()
+# # start_time = time.time()
 
-test = x.select(['Phone', 'Name','ID']).Where('Name', 'XCINNZOQYY').From('Teacher').get_use_index()
-print(test)
+# test = x.select(['Phone', 'Name','ID']).Where('Name', 'XCINNZOQYY').From('Teacher').get_use_index()
+# print(test)
 # test = x.select(['Phone', 'Name']).Where('Name', 'NGNMJNIR').From('Student').get()
 
 # end_time = time.time()
